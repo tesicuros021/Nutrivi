@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalji Pacijenta</title>
+    <style>
+        body {
+            background-color: #f7f9fb;
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+        }
+        h1 {
+            color: #4a90e2;
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4a90e2;
+            color: white;
+        }
+        .center-link {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+		a#novi {
+				display: block;
+                background-color: #4a90e2;
+                color: white;
+                padding: 15px 30px;
+                margin: 10px;
+                border-radius: 5px;
+                text-decoration: none;
+                text-align: center;
+                font-size: 1.2em;
+                transition: background-color 0.3s;
+            }
+		nav a#novi {
+                    background-color: #357ab7;
+                }
+    </style>
+</head>
+<body>
+    <h1>Detalji Pacijenta: {{ patient.ime }} {{ patient.prezime }}</h1>
+    <table>
+         <!-- Personal Information -->
+        <tr><td><b>Ime</b></td><td>{{ patient.ime }}</td></tr>
+        <tr><td><b>Prezime</b></td><td>{{ patient.prezime }}</td></tr>
+        <tr><td><b>Datum Rođenja</b></td><td>{{ patient.datum_rodjenja }}</td></tr>
+        <tr><td><b>Pol</b></td><td>{{ patient.pol }}</td></tr>
+
+        <!-- Contact Information -->
+        <tr><td><b>Kontakt Telefon</b></td><td>{{ patient.kontakt_telefon }}</td></tr>
+        <tr><td><b>Email</b></td><td>{{ patient.email }}</td></tr>
+        <tr><td><b>Adresa</b></td><td>{{ patient.adresa }}</td></tr>
+        <tr><td><b>ID</b></td><td>{{ patient.patient_id }}</td></tr>
+        <!-- Add more patient details as needed -->
+    </table>
+
+	<!-- Button to navigate to the new meeting page -->
+	<a  id="novi" href="/novisastanak/{{ patient.patient_id }}">Nov termin</a>
+	
+<h2>Meetings for {{ patient.ime }}</h2>
+
+<select name="meeting_id" onchange="redirectToMeeting(this, {{ patient.patient_id }})">
+    <option value="">Select a Meeting</option>
+    {% for id in patient_meeting_ids %}
+        <option value="{{ id }}">Meeting ID: {{ id }}</option>
+    {% empty %}
+        <option value="">No meetings available</option>
+    {% endfor %}
+</select>
+
+<script>
+    function redirectToMeeting(select, patientId) {
+        var meetingId = select.value;
+        if (meetingId) {
+            window.location.href = '/sastanak/' + patientId + '/' + meetingId + '/';
+        }
+    }
+</script>
+
+    <div class="center-link">
+        <a href="http://localhost:8000/ponuda/">Povratak na Ponudu</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive Design Meta Tag -->
+	<title>Unos novog sastanka</title>
+	<style>
+		body {
+			font-family: 'Open Sans', sans-serif;
+			background-color: #f7f9fb;
+			color: #333;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+		}
+
+		.form-container {
+			background-color: white;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.1);
+			width: 80%;
+			max-width: 500px;
+		}
+
+		h1 {
+			color: #4a90e2;
+			text-align: center;
+		}
+
+		table {
+			width: 100%;
+		}
+
+		input[type="text"], input[type="date"], input[type="email"] {
+			width: 100%;
+			padding: 8px;
+			margin: 6px 0;
+			box-sizing: border-box;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+		}
+
+		input[type="submit"] {
+			background-color: #4a90e2;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			width: 100%;
+		}
+
+			input[type="submit"]:hover {
+				background-color: #357ab7;
+			}
+
+		.link-container {
+			text-align: center;
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="form-container">
+		<h1>Unos novog pacijenta</h1>
+		<form method="POST">
+			{% csrf_token %}
+			<table>
+				<!-- Meeting Information -->
+				<tr><td>Datum sastanka:</td><td><input type="date" name="datum_sastanka"></td></tr>
+				<tr><td>Dijagnoza za ishranu:</td><td><input type="text" name="dijagnoza_za_ishranu"></td></tr>
+				<tr><td>Preporuka za ishranu:</td><td><input type="text" name="preporuka_za_ishranu"></td></tr>
+				<tr><td>BMI:</td><td><input type="text" name="bmi"></td></tr>
+				<tr><td>Telesna masa:</td><td><input type="text" name="telesna_masa"></td></tr>
+				<tr><td>Visina:</td><td><input type="text" name="visina"></td></tr>
+				<tr><td>Procenat spoljašnje masti:</td><td><input type="text" name="procenat_spoljasnje_masti"></td></tr>
+				<tr><td>Procenat unutrašnje masti:</td><td><input type="text" name="procenat_unutrasnje_masti"></td></tr>
+				<tr><td>Procenat mišića:</td><td><input type="text" name="procenat_misica"></td></tr>
+				<tr><td>Procenat vode:</td><td><input type="text" name="procenat_vode"></td></tr>
+			</table>
+			<input type="submit" value="Unesi">
+		</form>
+		<div class="link-container">
+			<a href="http://localhost:8000/ponuda/">Odustani</a>
+		</div>
+	</div>
+</body>
+</html>

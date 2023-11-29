@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Termin: {{ meeting.datum_sastanka }}</title>
+    <style>
+        body {
+            background-color: #f7f9fb;
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+        }
+        h1 {
+            color: #4a90e2;
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4a90e2;
+            color: white;
+        }
+        .center-link {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Detalji sa termina: {{ meeting.datum_sastanka }}</h1>
+    <table>
+        <!-- Meeting Information -->
+        <tr><td><b>Dijagnoza za Ishranu</b></td><td>{{ meeting.dijagnoza_za_ishranu }}</td></tr>
+        <tr><td><b>Preporuka za Ishranu</b></td><td>{{ meeting.preporuka_za_ishranu }}</td></tr>
+        <tr><td><b>BMI</b></td><td>{{ meeting.bmi }}</td></tr>
+        <tr><td><b>Telesna Masa</b></td><td>{{ meeting.telesna_masa }}</td></tr>
+        <tr><td><b>Visina</b></td><td>{{ meeting.visina }}</td></tr>
+        <tr><td><b>Procenat Spoljašnje Masti</b></td><td>{{ meeting.procenat_spoljasnje_masti }}</td></tr>
+        <tr><td><b>Procenat Unutrašnje Masti</b></td><td>{{ meeting.procenat_unutrasnje_masti }}</td></tr>
+        <tr><td><b>Procenat Mišića</b></td><td>{{ meeting.procenat_misica }}</td></tr>
+        <tr><td><b>Procenat Vode</b></td><td>{{ meeting.procenat_vode }}</td></tr>
+        <!-- Add more patient details as needed -->
+    </table>
+    <div class="center-link">
+        <a href="http://localhost:8000/detalji/{{ patient.patient_id }}">Natrag na pacijenta</a>
+    </div>
+</body>
+</html>

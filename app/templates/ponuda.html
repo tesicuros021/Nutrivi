@@ -1,0 +1,105 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Nutrivita - Lista Pacijenata</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
+		body {
+			font-family: 'Open Sans', sans-serif;
+			background-color: #f7f9fb;
+			color: #333;
+			margin: 0;
+			padding: 20px;
+		}
+
+		h1 {
+			color: #4a90e2;
+			text-align: center;
+			margin-top: 20px;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: separate;
+			border-spacing: 10px;
+			margin-top: 20px;
+		}
+
+		th, td {
+			padding: 10px;
+			border: 1px solid #ccc;
+		}
+
+		th {
+			background-color: #e7eef6;
+		}
+
+		a {
+			color: #4a90e2;
+			text-decoration: none;
+		}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+		/* Search form styling */
+		.search-form {
+			margin-bottom: 20px;
+		}
+
+			.search-form input[type="text"] {
+				padding: 10px;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				font-size: 16px;
+				width: 80%;
+				margin-right: 10px;
+			}
+
+			.search-form input[type="submit"] {
+				padding: 10px 20px;
+				border: none;
+				background-color: #4a90e2;
+				color: white;
+				border-radius: 5px;
+				cursor: pointer;
+				transition: background-color 0.3s;
+			}
+
+				.search-form input[type="submit"]:hover {
+					background-color: #357ab7;
+				}
+	</style>
+</head>
+<body>
+	<h1>Lista Pacijenata</h1>
+
+	<!-- Search Form -->
+	<form class="search-form" method="GET" action="">
+		<input type="text" name="query" placeholder="Pretraga po imenu...">
+		<input type="submit" value="Pretraga">
+	</form>
+
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Ime</th>
+			<th>Prezime</th>
+			<th>Detalji</th>
+			<th>Brisanje</th>
+		</tr>
+		{% for patient in patients %}
+		<tr>
+			<td>{{ patient.patient_id }}</td>
+			<td>{{ patient.ime }}</td>
+			<td>{{ patient.prezime }}</td>
+			<td><a href="http://localhost:8000/detalji/{{ patient.patient_id }}">Pogledaj</a></td>
+			<td><a href="http://localhost:8000/brisanje/{{ patient.patient_id }}">Obrisi</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+	<a href="http://localhost:8000/unos/">Unos Pacijenata</a>
+</body>
+</html>
